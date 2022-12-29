@@ -51,9 +51,9 @@ You are downloading 100 files (unless you changed the `size` parameter) so be pa
 ### Exploring dataset
 
 
-| ![](images/image.png)  |  ![](images/image1.png) |
+| ![](Images/Image.png)  |  ![](Images/image1.png) |
 :-------------------------:|:-------------------------:
-| ![](images/image2.png)  |  ![](images/image3.png) |
+| ![](Images/image2.png)  |  ![](Images/image3.png) |
 
 
 ### Analysis
@@ -66,7 +66,7 @@ I have used random 10k samples from the dataset to analyse.
 
 4. Distribution of class frequency in an image
 
-   ![Class frequency distribution](images/class_freq_dist.png)
+   ![Class frequency distribution](Images/Analysis.png)
 
 
 
@@ -128,9 +128,9 @@ Used various augmentation strategies:
 
 
 
-| ![](images/augmentation.png)  |  ![](images/augmentation1.png) |
+| ![](Images/Augmentation.png)  |  ![](Images/Augmentation1.png) |
 :-------------------------:|:-------------------------:
-| ![](images/augmentation2.png)  |  ![](images/augmentation3.png) |
+| ![](Images/Augmentation2.png)  |  ![](Images/Augmentation3.png) |
 
 
 
