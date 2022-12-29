@@ -51,7 +51,7 @@ You are downloading 100 files (unless you changed the `size` parameter) so be pa
 ### Exploring dataset
 
 
-| ![](Images/Image.png)  |  ![](Images/image1.png) |
+| ![](Images/Image.png)  |  ![](Images/iamge1.png) |
 :-------------------------:|:-------------------------:
 | ![](Images/image2.png)  |  ![](Images/image3.png) |
 
@@ -142,23 +142,8 @@ Used SGD with momentum. Rate decay: Cosine anealing with
           - warmup_learning_rate: 0.013333
           - warmup_steps: 200
 
-Stopped training at 3k steps just before our model would start overfitting. Although, training loss is still decreasing, but validation loss and mAP have plateaued. So, further training would overfit the dataset.
 
 
-![Loss](images/loss.png)
-
-
-![mAP](images/AP.png)
-
-
-![AR](images/AR.png)
-
-
-<img src="images/learning_rate.png" width=50% height=50%>
-
-
-
-### Creating an animation
 
 #### Export the trained model
 
@@ -175,14 +160,3 @@ Finally, you can create a video of your model's inferences for any tf record fil
 python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path data/waymo/test/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
 ```
 
-## Test results
-
-
-
-![](images/animation3.gif)
-
-
-## Future Work
-
-1. Based on the observation of test animation, bounding box predictions are not stable in every frame (bounding box not detected for some cars in intermediate frames). One possible solution is to use a Recurrent Neural Network (RNN).
-2. More time can be spent on find the right hyperparameters. Due to very limited compute resources, this could not be done.
