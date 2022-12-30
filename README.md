@@ -153,7 +153,7 @@ the loss is not decreasing fast enough and I experimented with a better learning
 ![AR](Images/detectionboxes_r.png)
 
 
-<img src="Images/learning_rate.Png" width=50% height=50%>
+<img src="Images/learning_rate.png" width=50% height=50%>
 
 #### Export the trained model
 
