@@ -179,6 +179,6 @@ python inference_video.py --labelmap_path label_map.pbtxt --model_path experimen
 
 ## Future Work
 
-1.I observed of test animation, bounding box predictions are not stable in every frame (bounding box not detected for some cars in intermediate frames). One possible solution is to use  the pretrained model from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) such as EfficientDet D1 640x640.
-2. More time can be spent on tune hyperparameters. Due to very limited compute resources, this could not be done.
+1.I observed of test animation, bounding box predictions are not stable in every frame (bounding box not detected for some cars in intermediate frames). Nevertheless, one solution could be using the pretrained model from [model zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md) such as EfficientDet D1 640x640.
+2. More time can be spent on tuning the hyperparameters. Due to very limited compute resources, this could not be done.
 
