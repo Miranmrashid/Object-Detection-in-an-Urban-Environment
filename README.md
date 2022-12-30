@@ -16,8 +16,8 @@ For this project, we will be using data from the [Waymo Open dataset](https://wa
 The data we will use for training, validation and testing is organized as follow:
 ```
 /home/workspace/data/
-    - train: contain the train data 90 files
-    - val: contain the val data 7 files
+    - train: contain the train data 87 files
+    - val: contain the val data 10 files
     - test - contains 3 files to test your model and create inference videos
 ```
 
@@ -51,9 +51,9 @@ You are downloading 100 files (unless you changed the `size` parameter) so be pa
 ### Exploring dataset
 
 
-| ![](images/image.png)  |  ![](images/image1.png) |
+| ![](Images/Image.png)  |  ![](Images/iamge1.png) |
 :-------------------------:|:-------------------------:
-| ![](images/image2.png)  |  ![](images/image3.png) |
+| ![](Images/image2.png)  |  ![](Images/image3.png) |
 
 
 ### Analysis
@@ -66,7 +66,7 @@ I have used random 10k samples from the dataset to analyse.
 
 4. Distribution of class frequency in an image
 
-   ![Class frequency distribution](images/class_freq_dist.png)
+   ![Class frequency distribution](Images/Analysis.png)
 
 
 
@@ -113,11 +113,12 @@ python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeli
 `CTRL+C`.
 
 To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir experiments/reference/`. You will report your findings in the writeup.
-
+By default, the evaluation script runs for only one epoch. Therefore, the eval logs in Tensorboard will look like a blue dot.
 
 ### Augmentation
 
-Explored the Object Detection API and applied many different augmentations
+Explored the Object Detection API and applied many different augmentations. For instance, I observed that the dataset has a night image and decided to add a brightness augmentation
+
 
 Used various augmentation strategies:
 1. random_horizontal_flip
@@ -128,37 +129,31 @@ Used various augmentation strategies:
 
 
 
-| ![](images/augmentation.png)  |  ![](images/augmentation1.png) |
+| ![](Images/Augmentation.png)  |  ![](Images/Augmentation1.png) |
 :-------------------------:|:-------------------------:
-| ![](images/augmentation2.png)  |  ![](images/augmentation3.png) |
+| ![](Images/Augmentation2.png)  |  ![](Images/Augmentation3.png) |
 
 
 
 ### Experiment
-
-Used SGD with momentum. Rate decay: Cosine anealing with 
-          - Clearning_rate_base: 0.04
-          - total_steps: 2500
-          - warmup_learning_rate: 0.013333
-          - warmup_steps: 200
-
-Stopped training at 3k steps just before our model would start overfitting. Although, training loss is still decreasing, but validation loss and mAP have plateaued. So, further training would overfit the dataset.
+the loss is not decreasing fast enough and I experimented with a better learning rate. Hence, I used SGD with momentum. Rate decay: Cosine anealing with 
+          -learning_rate_base: 0.0004
+          -total_steps: 5000
+          -warmup_learning_rate: 0.0004
+          -warmup_steps: 330
+ and total steps to 2900 to get the desired learning rate function.
 
 
-![Loss](images/loss.png)
+![Loss](Images/loss.png)
 
 
-![mAP](images/AP.png)
+![mAP](Images/detectionboxes_p.png)
 
 
-![AR](images/AR.png)
+![AR](Images/detectionboxes_r.png)
 
 
-<img src="images/learning_rate.png" width=50% height=50%>
-
-
-
-### Creating an animation
+<img src="Images/learning_rate.png" width=50% height=50%>
 
 #### Export the trained model
 
@@ -175,14 +170,3 @@ Finally, you can create a video of your model's inferences for any tf record fil
 python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path data/waymo/test/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
 ```
 
-## Test results
-
-
-
-![](images/animation3.gif)
-
-
-## Future Work
-
-1. Based on the observation of test animation, bounding box predictions are not stable in every frame (bounding box not detected for some cars in intermediate frames). One possible solution is to use a Recurrent Neural Network (RNN).
-2. More time can be spent on find the right hyperparameters. Due to very limited compute resources, this could not be done.
