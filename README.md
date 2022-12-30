@@ -144,13 +144,13 @@ the loss is not decreasing fast enough and I experimented with a better learning
  and total steps to 2900 to get the desired learning rate function.
 
 
-![Loss](Images/loss.Png)
+![Loss](Images/loss.png)
 
 
-![mAP](Images/detectionboxes_p.Png)
+![mAP](Images/detectionboxes_p.png)
 
 
-![AR](Images/detectionboxes_r.Png)
+![AR](Images/detectionboxes_r.png)
 
 
 <img src="Images/learning_rate.Png" width=50% height=50%>
