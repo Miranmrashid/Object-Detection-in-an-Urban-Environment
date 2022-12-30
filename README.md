@@ -16,8 +16,8 @@ For this project, we will be using data from the [Waymo Open dataset](https://wa
 The data we will use for training, validation and testing is organized as follow:
 ```
 /home/workspace/data/
-    - train: contain the train data 90 files
-    - val: contain the val data 7 files
+    - train: contain the train data 87 files
+    - val: contain the val data 10 files
     - test - contains 3 files to test your model and create inference videos
 ```
 
@@ -113,11 +113,12 @@ python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeli
 `CTRL+C`.
 
 To monitor the training, you can launch a tensorboard instance by running `python -m tensorboard.main --logdir experiments/reference/`. You will report your findings in the writeup.
-
+By default, the evaluation script runs for only one epoch. Therefore, the eval logs in Tensorboard will look like a blue dot.
 
 ### Augmentation
 
-Explored the Object Detection API and applied many different augmentations
+Explored the Object Detection API and applied many different augmentations. For instance, I observed that the dataset has a night image and decided to add a brightness augmentation
+
 
 Used various augmentation strategies:
 1. random_horizontal_flip
@@ -135,15 +136,24 @@ Used various augmentation strategies:
 
 
 ### Experiment
+the loss is not decreasing fast enough and I experimented with a better learning rate. Hence, I used SGD with momentum. Rate decay: Cosine anealing with 
+          -learning_rate_base: 0.0004
+          -total_steps: 5000
+          -warmup_learning_rate: 0.0004
+          -warmup_steps: 330
+ and total steps to 2900 to get the desired learning rate function.
 
-Used SGD with momentum. Rate decay: Cosine anealing with 
-          - Clearning_rate_base: 0.04
-          - total_steps: 2500
-          - warmup_learning_rate: 0.013333
-          - warmup_steps: 200
+
+![Loss](Images/loss.png)
 
 
+![mAP](Images/detectionboxes_p.png)
 
+
+![AR](Images/detectionboxes_r.png)
+
+
+<img src="Images/learning_rate.png" width=50% height=50%>
 
 #### Export the trained model
 
